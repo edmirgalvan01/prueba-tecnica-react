@@ -70,7 +70,9 @@ function App() {
 
    const handleClickRemove = (id) => {
       //Buscar index
-      const index = fields.findIndex((item) => item._uid === id);
+      const index = formItems.findIndex((item) => item._uid === id);
+
+      console.log(index);
 
       //creamos una nueva lista de campos
       const newFormItems = [...formItems];
