@@ -29,7 +29,11 @@ function FieldSelected({
          <div className='field--info'>
             <label className='field--label'>{label}</label>
             {type === 'select' ? (
-               <select className='field--input'></select>
+               <select className='field--input'>
+                  {options.map((option) => (
+                     <option key={option._uid}>{option.name}</option>
+                  ))}
+               </select>
             ) : (
                <input type={type} className='field--input' />
             )}

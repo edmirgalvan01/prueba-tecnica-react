@@ -62,6 +62,7 @@ function App() {
                {fields.map((field) => {
                   return (
                      <Field
+                        key={field._uid}
                         fields={fields}
                         formItems={formItems}
                         setFormItems={setFormItems}
@@ -80,6 +81,7 @@ function App() {
                {formItems.map((field) => {
                   return (
                      <FieldSelected
+                        key={field._uid}
                         fields={fields}
                         formItems={formItems}
                         setFormItems={setFormItems}

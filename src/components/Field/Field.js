@@ -13,7 +13,7 @@ function Field({
    const handleClickAdd = (id) => {
       //Buscar index
       const index = fields.findIndex((item) => item._uid === id);
-
+      console.log(fields[index]);
       //creamos una nueva lista de campos
       const newFormItems = [...formItems];
 
