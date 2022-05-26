@@ -1,0 +1,10 @@
+.form--container h1 {
+   margin-bottom: 10px;
+}
+.form--container__list {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   gap: 10px;
+   justify-content: center;
+}

@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Field } from './components/Field/Field';
-import { FormSelection } from './components/FormSelection/FormSelection';
-import { Form } from './components/Form/Form';
+import { FormContainer } from './components/FormContainer/FormContainer';
 
 function App() {
    const [form, setForm] = React.useState([]);
@@ -46,35 +45,48 @@ function App() {
 
    return (
       <>
-         <FormSelection>
+         <FormContainer>
             <h1>Selecciona los campos que desees agregar</h1>
-            {fields.map((field) => {
-               return (
-                  <Field key={field._uid}>
-                     <div className='field'>
-                        <label className='field--label'>{field.label}</label>
-                        <input type={field.type} className='field--input' />
-                        <button onClick={handleClickAdd} className='add-field'>
+            <section className='form--container__list'>
+               {fields.map((field) => {
+                  return (
+                     <Field className='field' key={field._uid}>
+                        <div className='field--info'>
+                           <label className='field--label'>{field.label}</label>
+                           <input type={field.type} className='field--input' />
+                        </div>
+                        <button
+                           onClick={handleClickAdd}
+                           className='field--button'
+                        >
                            Agregar
                         </button>
-                     </div>
-                  </Field>
-               );
-            })}
-         </FormSelection>
-         <Form>
+                     </Field>
+                  );
+               })}
+            </section>
+         </FormContainer>
+         <FormContainer>
             <h1>Asi se ve tu formulario hasta ahora</h1>
-            <div className='field'>
-               <label className='field--label'>Last Name</label>
-               <input type='text' className='field--input' />
-               <button className='add-field'>Agregar</button>
-            </div>
-            <div className='field'>
-               <label className='field--label'>Last Name</label>
-               <input type='text' className='field--input' />
-               <button className='add-field'>Agregar</button>
-            </div>
-         </Form>
+            <section className='form--container__list'>
+               {fields.map((field) => {
+                  return (
+                     <Field className='field' key={field._uid}>
+                        <div className='field--info'>
+                           <label className='field--label'>{field.label}</label>
+                           <input type={field.type} className='field--input' />
+                        </div>
+                        <button
+                           onClick={handleClickAdd}
+                           className='field--button'
+                        >
+                           Agregar
+                        </button>
+                     </Field>
+                  );
+               })}
+            </section>
+         </FormContainer>
       </>
    );
 }
