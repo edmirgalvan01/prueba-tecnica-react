@@ -4,7 +4,8 @@ import { FormContainer } from './components/FormContainer/FormContainer';
 import { Layout } from './components/Layout/Layout';
 
 function App() {
-   const [form, setForm] = React.useState([]);
+   const [formItems, setFormItems] = React.useState([]);
+   console.log(formItems);
 
    const fields = [
       {
@@ -36,11 +37,49 @@ function App() {
          type: 'select',
          label: 'Select',
          _uid: 6,
+         options: [
+            {
+               name: 'Opcion 1',
+               _uid: 1,
+            },
+            {
+               name: 'Opcion 2',
+               _uid: 2,
+            },
+            {
+               name: 'Opcion 3',
+               _uid: 3,
+            },
+         ],
       },
    ];
 
-   const handleClickAdd = () => {
-      console.log('Add!');
+   const handleClickAdd = (id) => {
+      //Buscar index
+      const index = fields.findIndex((item) => item._uid === id);
+
+      //creamos una nueva lista de campos
+      const newFormItems = [...formItems];
+
+      //agregamos a la nueva lista
+      newFormItems.push(fields[index]);
+
+      //Agregamos al estado
+      setFormItems(newFormItems);
+   };
+
+   const handleClickRemove = (id) => {
+      //Buscar index
+      const index = fields.findIndex((item) => item._uid === id);
+
+      //creamos una nueva lista de campos
+      const newFormItems = [...formItems];
+
+      //quitamos de la nueva lista
+      newFormItems.splice(index, 1);
+
+      //actualizamos el estado
+      setFormItems(newFormItems);
    };
 
    return (
@@ -54,7 +93,13 @@ function App() {
                         <div className='field--info'>
                            <label className='field--label'>{field.label}</label>
                            {field.type === 'select' ? (
-                              <select className='field--input'></select>
+                              <select className='field--input'>
+                                 {field.options.map((option) => (
+                                    <option key={option._uid}>
+                                       {option.name}
+                                    </option>
+                                 ))}
+                              </select>
                            ) : (
                               <input
                                  type={field.type}
@@ -63,7 +108,9 @@ function App() {
                            )}
                         </div>
                         <button
-                           onClick={handleClickAdd}
+                           onClick={() => {
+                              handleClickAdd(field._uid);
+                           }}
                            className='field--button'
                         >
                            Agregar
@@ -76,7 +123,7 @@ function App() {
          <FormContainer>
             <h1>Asi se ve tu formulario hasta ahora</h1>
             <section className='form--container__list'>
-               {fields.map((field) => {
+               {formItems.map((field) => {
                   return (
                      <Field className='field' key={field._uid}>
                         <div className='field--info'>
@@ -91,10 +138,12 @@ function App() {
                            )}
                         </div>
                         <button
-                           onClick={handleClickAdd}
+                           onClick={() => {
+                              handleClickRemove(field._uid);
+                           }}
                            className='field--button'
                         >
-                           Agregar
+                           Eliminar
                         </button>
                      </Field>
                   );
