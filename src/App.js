@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 import { Field } from './components/Field/Field';
 import { FormContainer } from './components/FormContainer/FormContainer';
+import { Layout } from './components/Layout/Layout';
 
 function App() {
    const [form, setForm] = React.useState([]);
@@ -44,7 +44,7 @@ function App() {
    };
 
    return (
-      <>
+      <Layout>
          <FormContainer>
             <h1>Selecciona los campos que desees agregar</h1>
             <section className='form--container__list'>
@@ -87,7 +87,7 @@ function App() {
                })}
             </section>
          </FormContainer>
-      </>
+      </Layout>
    );
 }
 
