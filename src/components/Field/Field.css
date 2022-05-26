@@ -1,11 +1,12 @@
 .field {
-   padding: 20px;
+   padding: 30px 20px;
    display: flex;
    align-items: center;
    justify-content: space-between;
    width: 40%;
-   background-color: #ffe69a;
-   border-radius: 15px;
+   border: 1px solid #ffe69a;
+   border-radius: 5px;
+   box-shadow: 2px 0px 13px rgba(0, 0, 0, 0.1);
 }
 .field--info {
    display: flex;
@@ -13,14 +14,12 @@
    gap: 5px;
 }
 .field--label {
-   font-size: 18px;
-   font-weight: 600;
+   font-size: 13px;
 }
 .field--input {
    height: 25px;
-   border-radius: 10px;
-   padding-left: 10px;
-   border: 1px solid rgb(75, 75, 75);
+   border: none;
+   border-bottom: 1px solid rgb(75, 75, 75);
 }
 .field--input:focus {
    outline: none;
