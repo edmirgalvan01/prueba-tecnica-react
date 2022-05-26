@@ -1,7 +1,7 @@
 import React from 'react';
-import './Field.css';
+import '../Field/Field.css';
 
-function Field({
+function FieldSelected({
    fields,
    formItems,
    setFormItems,
@@ -10,17 +10,17 @@ function Field({
    options,
    _uid,
 }) {
-   const handleClickAdd = (id) => {
+   const handleClickRemove = (id) => {
       //Buscar index
-      const index = fields.findIndex((item) => item._uid === id);
+      const index = formItems.findIndex((item) => item._uid === id);
 
       //creamos una nueva lista de campos
       const newFormItems = [...formItems];
 
-      //agregamos a la nueva lista
-      newFormItems.push(fields[index]);
+      //quitamos de la nueva lista
+      newFormItems.splice(index, 1);
 
-      //Agregamos al estado
+      //actualizamos el estado
       setFormItems(newFormItems);
    };
 
@@ -29,25 +29,21 @@ function Field({
          <div className='field--info'>
             <label className='field--label'>{label}</label>
             {type === 'select' ? (
-               <select className='field--input'>
-                  {options.map((option) => (
-                     <option key={option._uid}>{option.name}</option>
-                  ))}
-               </select>
+               <select className='field--input'></select>
             ) : (
                <input type={type} className='field--input' />
             )}
          </div>
          <button
             onClick={() => {
-               handleClickAdd(_uid);
+               handleClickRemove(_uid);
             }}
             className='field--button'
          >
-            Agregar
+            Eliminar
          </button>
       </div>
    );
 }
 
-export { Field };
+export { FieldSelected };

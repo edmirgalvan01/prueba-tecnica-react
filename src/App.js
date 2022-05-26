@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field } from './components/Field/Field';
+import { FieldSelected } from './components/FieldSelected/FieldSelected';
 import { FormContainer } from './components/FormContainer/FormContainer';
 import { Layout } from './components/Layout/Layout';
 
@@ -53,36 +54,6 @@ function App() {
       },
    ];
 
-   const handleClickAdd = (id) => {
-      //Buscar index
-      const index = fields.findIndex((item) => item._uid === id);
-
-      //creamos una nueva lista de campos
-      const newFormItems = [...formItems];
-
-      //agregamos a la nueva lista
-      newFormItems.push(fields[index]);
-
-      //Agregamos al estado
-      setFormItems(newFormItems);
-   };
-
-   const handleClickRemove = (id) => {
-      //Buscar index
-      const index = formItems.findIndex((item) => item._uid === id);
-
-      console.log(index);
-
-      //creamos una nueva lista de campos
-      const newFormItems = [...formItems];
-
-      //quitamos de la nueva lista
-      newFormItems.splice(index, 1);
-
-      //actualizamos el estado
-      setFormItems(newFormItems);
-   };
-
    return (
       <Layout>
          <FormContainer>
@@ -90,33 +61,15 @@ function App() {
             <section className='form--container__list'>
                {fields.map((field) => {
                   return (
-                     <Field className='field' key={field._uid}>
-                        <div className='field--info'>
-                           <label className='field--label'>{field.label}</label>
-                           {field.type === 'select' ? (
-                              <select className='field--input'>
-                                 {field.options.map((option) => (
-                                    <option key={option._uid}>
-                                       {option.name}
-                                    </option>
-                                 ))}
-                              </select>
-                           ) : (
-                              <input
-                                 type={field.type}
-                                 className='field--input'
-                              />
-                           )}
-                        </div>
-                        <button
-                           onClick={() => {
-                              handleClickAdd(field._uid);
-                           }}
-                           className='field--button'
-                        >
-                           Agregar
-                        </button>
-                     </Field>
+                     <Field
+                        fields={fields}
+                        formItems={formItems}
+                        setFormItems={setFormItems}
+                        label={field.label}
+                        type={field.type}
+                        options={field.options}
+                        _uid={field._uid}
+                     />
                   );
                })}
             </section>
@@ -126,27 +79,15 @@ function App() {
             <section className='form--container__list'>
                {formItems.map((field) => {
                   return (
-                     <Field className='field' key={field._uid}>
-                        <div className='field--info'>
-                           <label className='field--label'>{field.label}</label>
-                           {field.type === 'select' ? (
-                              <select className='field--input'></select>
-                           ) : (
-                              <input
-                                 type={field.type}
-                                 className='field--input'
-                              />
-                           )}
-                        </div>
-                        <button
-                           onClick={() => {
-                              handleClickRemove(field._uid);
-                           }}
-                           className='field--button'
-                        >
-                           Eliminar
-                        </button>
-                     </Field>
+                     <FieldSelected
+                        fields={fields}
+                        formItems={formItems}
+                        setFormItems={setFormItems}
+                        label={field.label}
+                        type={field.type}
+                        options={field.options}
+                        _uid={field._uid}
+                     />
                   );
                })}
             </section>
