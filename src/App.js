@@ -53,7 +53,14 @@ function App() {
                      <Field className='field' key={field._uid}>
                         <div className='field--info'>
                            <label className='field--label'>{field.label}</label>
-                           <input type={field.type} className='field--input' />
+                           {field.type === 'select' ? (
+                              <select className='field--input'></select>
+                           ) : (
+                              <input
+                                 type={field.type}
+                                 className='field--input'
+                              />
+                           )}
                         </div>
                         <button
                            onClick={handleClickAdd}
@@ -74,7 +81,14 @@ function App() {
                      <Field className='field' key={field._uid}>
                         <div className='field--info'>
                            <label className='field--label'>{field.label}</label>
-                           <input type={field.type} className='field--input' />
+                           {field.type === 'select' ? (
+                              <select className='field--input'></select>
+                           ) : (
+                              <input
+                                 type={field.type}
+                                 className='field--input'
+                              />
+                           )}
                         </div>
                         <button
                            onClick={handleClickAdd}
