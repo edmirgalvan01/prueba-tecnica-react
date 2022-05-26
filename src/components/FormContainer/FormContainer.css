@@ -1,3 +1,10 @@
+.form--container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 20px;
+}
 .form--container h1 {
    margin-bottom: 10px;
 }
@@ -7,4 +14,13 @@
    flex-wrap: wrap;
    gap: 10px;
    justify-content: center;
+   width: 100vw;
+}
+.form--button__save {
+   width: 150px;
+   height: 50px;
+   background-color: #ffd24c;
+   border: none;
+   border-radius: 15px;
+   margin: 0 auto;
 }

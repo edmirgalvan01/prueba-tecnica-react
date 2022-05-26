@@ -5,7 +5,6 @@ import { Layout } from './components/Layout/Layout';
 
 function App() {
    const [formItems, setFormItems] = React.useState([]);
-   console.log(formItems);
 
    const fields = [
       {
@@ -151,6 +150,7 @@ function App() {
                   );
                })}
             </section>
+            <button className='form--button__save'>Guardar</button>
          </FormContainer>
       </Layout>
    );
